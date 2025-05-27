@@ -1,0 +1,8 @@
+Aman Negi,18324,Saving,5678,20000.00
+Rahul Lingwal,18325,Current,2893,20000.00
+Rohit Singh Danu,18326,RD,7833,35000.00
+Sarthak Butola,18327,FD,2380,300000.00
+Akshit Chandel,18328,Current,8982,25000.00
+Dipanshu Nath,18329,Saving,1234,24000.00
+Gayatri Rawat,18330,Current,5646,55500.00
+Akriti Rana,18332,FD,2345,90000.00

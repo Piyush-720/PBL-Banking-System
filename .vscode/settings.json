@@ -1,0 +1,7 @@
+{
+    "code-runner.executorMap": {
+        "c": "mingw32-make && .\\main.exe"
+    },
+    "code-runner.runInTerminal": true,
+    "code-runner.clearPreviousOutput": true
+}
