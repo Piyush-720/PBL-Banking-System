@@ -23,5 +23,7 @@ void restoreData();
 void manager();
 void clerk();
 void user();
+float calculateInterest(const char *accountType, float principal, int days);
+void scheduledInterestUpdate();
 
 #endif

@@ -3,36 +3,7 @@
 #include <ctype.h>
 #include "struct.h"
 #include "functions.h"
-
-int compareInt(int input) // Function to exit in between without giving integer input
-{
-    if (input == 0)
-    {
-        printf("Exited... \n");
-        return 1;
-    }
-    return 0;
-}
-
-int compareFloat(float input) // Function to exit in between without giving float input
-{
-    if (input == 0.0f)
-    {
-        printf("Exited... \n");
-        return 1;
-    }
-    return 0;
-}
-
-int compareString(char *input) // Function to exit in between without giving string input
-{
-    if (strcmp(input, "0") == 0)
-    {
-        printf("Exited... \n");
-        return 1;
-    }
-    return 0;
-}
+#include <time.h>
 
 void createAccount()
 {
@@ -135,6 +106,11 @@ void createAccount()
             isValid = 1;
     }
 
+    // Get current date for open_date
+    time_t now = time(NULL);
+    struct tm *t = localtime(&now);
+    snprintf(acc.open_date, sizeof(acc.open_date), "%04d-%02d-%02d", t->tm_year + 1900, t->tm_mon + 1, t->tm_mday);
+
     // Printing account details
     printf("\nYour Account is created Successfully! \n\nYour Account details are : \n");
     printf("Name : %s \nAccount Number : %s \nAccount Type : %s \nPIN : %d \nBalance : %.2f \n", acc.name, acc.account_no, acc.type, acc.pin, acc.balance);
@@ -149,7 +125,7 @@ void createAccount()
         return;
     }
 
-    fprintf(fp, "%s,%s,%s,%d,%.2f\n", acc.name, acc.account_no, acc.type, acc.pin, acc.balance);
+    fprintf(fp, "%s,%s,%s,%d,%.2f,%s\n", acc.name, acc.account_no, acc.type, acc.pin, acc.balance, acc.open_date);
     fclose(fp);
 
     lastAcNo++;
@@ -179,7 +155,7 @@ void closeAccount()
         return;
     }
 
-    while (fscanf(fp, "%39[^,],%9[^,],%9[^,],%d,%f\n", acc.name, acc.account_no, acc.type, &acc.pin, &acc.balance) == 5)
+    while (fscanf(fp, "%39[^,],%9[^,],%9[^,],%d,%f,%10[^\n]\n", acc.name, acc.account_no, acc.type, &acc.pin, &acc.balance, acc.open_date) == 6)
     {
         if (strcmp(acc.account_no, acNo) == 0)
         {
@@ -189,7 +165,7 @@ void closeAccount()
             continue; // Skip writing this account
         }
         // Write all other accounts to temp.txt
-        fprintf(temp, "%s,%s,%s,%d,%.2f\n", acc.name, acc.account_no, acc.type, acc.pin, acc.balance);
+        fprintf(temp, "%s,%s,%s,%d,%.2f,%s\n", acc.name, acc.account_no, acc.type, acc.pin, acc.balance, acc.open_date);
     }
 
     fclose(fp);

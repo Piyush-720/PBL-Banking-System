@@ -1,5 +1,5 @@
 CC = gcc
-SRC = src/main.c src/piyush.c src/deepanshu.c src/gayatri.c src/aakriti.c
+SRC = src/main.c src/backup_switch.c src/create.c src/operation.c src/reports.c
 OUT = main
 
 all: $(OUT)
